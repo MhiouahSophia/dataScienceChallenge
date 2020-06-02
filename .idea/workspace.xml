@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="818ed8f8-f05a-4bec-89a5-b75efdda525f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Engie_dataScienceChallenge.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/activate" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/activate.csh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/activate.fish" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/python" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/python3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/bin/python3.6" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib64" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Features/cleaning_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Features/cleaning_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Features/split_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Features/split_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/train_modelling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/train_modelling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visualization/original_analyse.py" beforeDir="false" afterPath="$PROJECT_DIR$/Visualization/original_analyse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1cjPYh26ja5rN4SHfF5WfOUM9pJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="818ed8f8-f05a-4bec-89a5-b75efdda525f" name="Default Changelist" comment="" />
+      <created>1591039078650</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591039078650</updated>
+    </task>
+    <task id="LOCAL-00001" summary="structuration code">
+      <created>1591040443574</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1591040443574</updated>
+    </task>
+    <task id="LOCAL-00002" summary="data orginal">
+      <created>1591040947097</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1591040947097</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="structuration code" />
+    <MESSAGE value="data orginal" />
+    <option name="LAST_COMMIT_MESSAGE" value="data orginal" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="618" y="337" width="595" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591040336815">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="618" y="337" width="595" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1591040336815" />
+    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2" timestamp="1591040947015">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591040947015" />
+    <state x="410" y="170" key="SettingsEditor" timestamp="1591044805386">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="410" y="170" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1591044805386" />
+    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1591040953756">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1591040953756" />
+  </component>
+</project>
