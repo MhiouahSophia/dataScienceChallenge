@@ -1,11 +1,14 @@
 from configparser import ConfigParser
+from cleaning_data import remove_nan
+from split_data import split_train_test
 import json
 import shutil
 import os
 import pickle
 
+
 def main():
-# parser config
+    # parser config
     config_file = "./config.ini"
     cp = ConfigParser()
     cp.read(config_file)
@@ -16,7 +19,7 @@ def main():
 
     feedback_clean, theme_clean, theme_code_clean = remove_nan(data_path)
 
-    X_train, X_test , Y_train, Y_test = split_train_test(feedback_clean,theme_code_clean)
+    X_train, X_test, Y_train, Y_test = split_train_test(feedback_clean, theme_code_clean)
 
     print(' ******** Loaded, cleaned and split the data')
 
