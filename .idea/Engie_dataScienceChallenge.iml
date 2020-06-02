@@ -3,7 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Data_Original" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Data processed" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Data_processed" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Features" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Notebooks" isTestSource="false" />
