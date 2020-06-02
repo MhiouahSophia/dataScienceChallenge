@@ -56,6 +56,50 @@ def tfidf(data):
     vectorizer = TfidfVectorizer(tokenizer=LemmaTokenizer(), analyzer=stemmed_words, max_features=1000,
                                  stop_words=stopWords, strip_accents='ascii')
     return vectorizer.fit_transform(data).toarray()
-# word2vec
+
 
 # fastText
+
+
+#Load the model and Retrieve 10 dimensions instead of 300 dimensions
+
+#load the model
+ft = fasttext.load_model('cc.fr.300.bin')
+
+#Reduce the dimension of the model
+fasttext.util.reduce_model(ft, 100)
+
+#Save the reduced model
+ft.save_model('cc.fr.100.bin')
+
+#load the model
+ft = fasttext.load_model('./cc.fr.10.bin')
+ft.get_dimension()
+
+#Retrieve FastText vocabulary
+vocab_ft = ft.get_words()
+
+#ft.get_sentence_vector('syndic')
+#feedback_train_clean[1]
+
+#Mapping between the word in the corpus vs FastText vocab
+X_train_ft = [[ft.get_sentence_vector(word) for word in word_tokenize(x) if word in vocab_ft]
+               for x in feedback_train_clean]
+X_test_ft = [[ft.get_sentence_vector(word) for word in word_tokenize(x) if word in vocab_ft]
+               for x in feedback_val_clean]
+
+#Remove empty fasttext train data
+X_train_ft_clean=[]
+theme_train_clean = []
+for i in range(0,len(X_train_ft)):
+    if len(X_train_ft[i])!=0:
+        X_train_ft_clean.append(X_train_ft[i])
+        theme_train_clean.append(theme_train_code_clean[i])
+
+#Remove empty fasttext test data
+X_test_ft_clean=[]
+theme_val_clean = []
+for i in range(0,len(X_test_ft)):
+    if len(X_test_ft[i])!=0:
+        X_test_ft_clean.append(X_test_ft[i])
+        theme_val_clean.append(theme_val_code_clean[i])
