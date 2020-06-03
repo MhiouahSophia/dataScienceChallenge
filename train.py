@@ -1,10 +1,9 @@
 from configparser import ConfigParser
 from cleaning_data import cleaning_text
 from split_data import split_train_test
-from processing_data import word_count, tfidf, word2vec_fastText
-from machine_learning_models import train_RF, train_LR
-from calculate_ml_performance_metrics import multiclass_roc_auc_score, conf_matrix
+from train_ml import train_ml
 import os
+
 
 def main():
     # parser config
@@ -14,7 +13,8 @@ def main():
 
     # default config
     job_number = cp["DATA"].getint("job_number")
-    output_dir = cp["DATA"].get("output_dir") + str(job_number) + '/'
+    model = cp["DATA"].get("model")
+    output_dir = cp["DATA"].get("output_dir") + str(model) + '/' + str(job_number) + '/'
     # create folder for writing the result
 
     if os.path.exists(output_dir):
@@ -48,10 +48,11 @@ def main():
     print(X_train.head())
     print(' ******** Loaded, cleaned and split the data')
 
-    if fatstext_:
-        X_train, X_test = word2vec_fastText(X_train), word2vec_fastText(X_test)
-        print(' ******** Word2vec done ')
+    if model == 'ML':
+        train_ml(X_train, X_test, Y_train, Y_test, ml_model_name, tfidf_, wordcount_, n_estimators_rf, max_features_rf,
+                 random_state, max_iter_LR, output_dir, job_number)
 
 
 if __name__ == "__main__":
     main()
+

@@ -11,6 +11,7 @@ def conf_matrix(Y_test, Y_predict, output_path, name_fig):
     df_cm = pd.DataFrame(confusion_matrix(Y_test, Y_predict))
     plt.figure(figsize=(10, 7))
     sns.heatmap(df_cm, annot=True)
+    plt.title('Score AUC ' + str(round(multiclass_roc_auc_score(Y_test, Y_predict, average="macro"), 2)))
     plt.savefig(output_path + str(name_fig))
     return df_cm
 
