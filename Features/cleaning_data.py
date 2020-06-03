@@ -12,11 +12,6 @@ def load_data(path):
     return pd.read_csv(path, encoding='utf-8')
 
 
-def clear_empty_doc(df_feedback):
-    # remove empty  document
-    # print(df_feedback.head())
-    df_feedback = df_feedback[df_feedback['Q_clean'].apply(lambda x: len(x) > 2)]
-    return df_feedback
 
 
 def cleaning_text(path, remove_nan=False):
@@ -51,7 +46,7 @@ def cleaning_text(path, remove_nan=False):
 
     df_feedback.loc[:, 'Q_clean'] = feed_clean
 
-    df_feedback_clean = clear_empty_doc(df_feedback)
+    df_feedback_clean = df_feedback[df_feedback['Q_clean'].apply(lambda x: len(x) > 2)]
 
     return df_feedback_clean
 

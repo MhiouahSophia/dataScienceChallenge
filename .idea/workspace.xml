@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="818ed8f8-f05a-4bec-89a5-b75efdda525f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Features/cleaning_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Features/cleaning_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Features/processing_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Features/processing_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/machine_learning_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/machine_learning_models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model/train_modelling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/train_modelling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591071730112</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="train RF +  AUC">
+      <created>1591152917085</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1591152917085</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -124,33 +136,38 @@
     <MESSAGE value="env conda" />
     <MESSAGE value="config ini" />
     <MESSAGE value="cleaning data + tfidf + wordCount" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaning data + tfidf + wordCount" />
+    <MESSAGE value="train RF +  AUC" />
+    <option name="LAST_COMMIT_MESSAGE" value="train RF +  AUC" />
   </component>
   <component name="WindowStateProjectService">
     <state x="618" y="337" width="821" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591118761982">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="618" y="337" width="821" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1591118761982" />
-    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2" timestamp="1591071730080">
+    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2" timestamp="1591152917019">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591071730080" />
-    <state width="1558" height="264" key="GridCell.Tab.0.bottom" timestamp="1591116655359">
+    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591152917019" />
+    <state x="763" y="275" width="424" height="484" key="FileChooserDialogImpl" timestamp="1591156765404">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1558" height="264" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1591116655359" />
-    <state width="1558" height="264" key="GridCell.Tab.0.center" timestamp="1591116655358">
+    <state x="763" y="275" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1591156765404" />
+    <state width="1558" height="264" key="GridCell.Tab.0.bottom" timestamp="1591156813688">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1558" height="264" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1591116655358" />
-    <state width="1558" height="264" key="GridCell.Tab.0.left" timestamp="1591116655357">
+    <state width="1558" height="264" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1591156813688" />
+    <state width="1558" height="264" key="GridCell.Tab.0.center" timestamp="1591156813687">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1558" height="264" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1591116655357" />
-    <state width="1558" height="264" key="GridCell.Tab.0.right" timestamp="1591116655358">
+    <state width="1558" height="264" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1591156813687" />
+    <state width="1558" height="264" key="GridCell.Tab.0.left" timestamp="1591156813687">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1558" height="264" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1591116655358" />
+    <state width="1558" height="264" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1591156813687" />
+    <state width="1558" height="264" key="GridCell.Tab.0.right" timestamp="1591156813688">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1558" height="264" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1591156813688" />
     <state x="823" y="383" width="555" height="264" key="MultipleFileMergeDialog" timestamp="1591152777471">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -159,9 +176,9 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="410" y="170" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1591061136358" />
-    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1591152765619">
+    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1591152924908">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1591152765619" />
+    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1591152924908" />
   </component>
 </project>

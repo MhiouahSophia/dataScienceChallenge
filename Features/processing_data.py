@@ -22,7 +22,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import fasttext
 from fasttext import util
 import os.path
-from cleaning_data import clear_empty_doc
 
 
 def fr_stop_word():
@@ -69,20 +68,8 @@ def tfidf(df_feedback):
 
 def word2vec_fastText(df_feedback):
     # Load the model and Retrieve 100 dimensions instead of 300 dimensions
-    if not os.path.exists('../cc.fr.100.bin'):
-        # load the model
-        ft = fasttext.load_model('../cc.fr.300.bin')
-        # Reduce the dimension of the model
-        fasttext.util.reduce_model(ft, 100)
-        # Save the reduced model
-        ft.save_model('../cc.fr.100.bin')
-        # load the model
-        ft = fasttext.load_model('../cc.fr.100.bin')
-        ft.get_dimension()
-
-    else:
-        ft = fasttext.load_model('../cc.fr.100.bin')
-        ft.get_dimension()
+    ft = fasttext.load_model('../../FastText/cc.fr.10.bin')
+    ft.get_dimension()
 
     # Retrieve FastText vocabulary
     vocab_ft = ft.get_words()
@@ -91,9 +78,7 @@ def word2vec_fastText(df_feedback):
     # df_feedback_train_clean[1]
 
     # Mapping between the word in the corpus vs FastText vocab
-    df_feedback_tovec = pd.DataFrame([[ft.get_sentence_vector(word) for word in word_tokenize(x) if word in vocab_ft]
-                                      for x in df_feedback])
-
-    df_feedback_tovec = clear_empty_doc(df_feedback_tovec).toarray()
-
+    df_feedback_tovec = [[ft.get_sentence_vector(word) for word in word_tokenize(x) if word in vocab_ft]
+                                      for x in df_feedback]
+    print(df_feedback_tovec.shape)
     return df_feedback_tovec

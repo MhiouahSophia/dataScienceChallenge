@@ -4,6 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
 
+
 def train_RF(X_train, Y_train, X_test, n_estimators, max_features, random_state):
     RF_clf = RandomForestClassifier(n_estimators=n_estimators, max_features=max_features, random_state=random_state)
     RF_clf.fit(X_train, Y_train)
