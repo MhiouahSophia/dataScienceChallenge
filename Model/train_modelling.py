@@ -19,8 +19,8 @@ def main():
 
     feedback_clean, theme_clean, theme_code_clean = remove_nan(data_path)
 
-    X_train, X_test, Y_train, Y_test = split_train_test(feedback_clean, theme_code_clean)
 
+    X_train, X_test, Y_train, Y_test = split_train_test(feedback_clean, theme_code_clean)
     print(' ******** Loaded, cleaned and split the data')
 
 
