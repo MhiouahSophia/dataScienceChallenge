@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="818ed8f8-f05a-4bec-89a5-b75efdda525f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Model DeepLearning/test_dl.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model DeepLearning/train_dl.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Model MachineLearning/test_ml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Engie_dataScienceChallenge.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Engie_dataScienceChallenge.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/cleaning_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Features/cleaning_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Features/processing_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Features/processing_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/machine_learning_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/machine_learning_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model/train_modelling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model/train_modelling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Features/split_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Features/split_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/calculate_performance_metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model MachineLearning/calculate_ml_performance_metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/deep_learning_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model DeepLearning/calculate_dl_performance_metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/machine_learning_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model MachineLearning/machine_learning_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/test_modelling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model DeepLearning/deep_learning_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model/train_modelling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model MachineLearning/train_ml.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +44,28 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.train_ml">
+    <configuration name="train_ml" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Engie_dataScienceChallenge" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Model MachineLearning" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Model MachineLearning/train_ml.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="train_modelling" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Engie_dataScienceChallenge" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -62,6 +89,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.train_ml" />
         <item itemvalue="Python.train_modelling" />
       </list>
     </recent_temporary>
@@ -126,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591152917085</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="option ML model + option pre processing">
+      <created>1591157097951</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1591157097951</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -137,37 +172,38 @@
     <MESSAGE value="config ini" />
     <MESSAGE value="cleaning data + tfidf + wordCount" />
     <MESSAGE value="train RF +  AUC" />
-    <option name="LAST_COMMIT_MESSAGE" value="train RF +  AUC" />
+    <MESSAGE value="option ML model + option pre processing" />
+    <option name="LAST_COMMIT_MESSAGE" value="option ML model + option pre processing" />
   </component>
   <component name="WindowStateProjectService">
     <state x="618" y="337" width="821" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591118761982">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="618" y="337" width="821" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1591118761982" />
-    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2" timestamp="1591152917019">
+    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2" timestamp="1591157097862">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591152917019" />
+    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591157097862" />
     <state x="763" y="275" width="424" height="484" key="FileChooserDialogImpl" timestamp="1591156765404">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="763" y="275" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1591156765404" />
-    <state width="1558" height="264" key="GridCell.Tab.0.bottom" timestamp="1591156813688">
+    <state width="1558" height="264" key="GridCell.Tab.0.bottom" timestamp="1591212728252">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1558" height="264" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1591156813688" />
-    <state width="1558" height="264" key="GridCell.Tab.0.center" timestamp="1591156813687">
+    <state width="1558" height="264" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1591212728252" />
+    <state width="1558" height="264" key="GridCell.Tab.0.center" timestamp="1591212728252">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1558" height="264" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1591156813687" />
-    <state width="1558" height="264" key="GridCell.Tab.0.left" timestamp="1591156813687">
+    <state width="1558" height="264" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1591212728252" />
+    <state width="1558" height="264" key="GridCell.Tab.0.left" timestamp="1591212728251">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1558" height="264" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1591156813687" />
-    <state width="1558" height="264" key="GridCell.Tab.0.right" timestamp="1591156813688">
+    <state width="1558" height="264" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1591212728251" />
+    <state width="1558" height="264" key="GridCell.Tab.0.right" timestamp="1591212728252">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1558" height="264" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1591156813688" />
+    <state width="1558" height="264" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1591212728252" />
     <state x="823" y="383" width="555" height="264" key="MultipleFileMergeDialog" timestamp="1591152777471">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -176,9 +212,9 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="410" y="170" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1591061136358" />
-    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1591152924908">
+    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1591157105439">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1591152924908" />
+    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1591157105439" />
   </component>
 </project>
