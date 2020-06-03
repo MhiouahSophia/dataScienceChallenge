@@ -12,40 +12,48 @@ def load_data(path):
     return pd.read_csv(path, encoding='utf-8')
 
 
-def Cleaning_text(path, remove_nan=False):
+def clear_empty_doc(df_feedback):
+    # remove empty  document
+    # print(df_feedback.head())
+    df_feedback = df_feedback[df_feedback['Q_clean'].apply(lambda x: len(x) > 2)]
+    return df_feedback
+
+
+def cleaning_text(path, remove_nan=False):
     train_data = load_data(path)
     if remove_nan:
-        # Clean data without NaN feedback
-        feedback = train_data[train_data["Q"].notnull()]["Q"].values.tolist()
-        theme = train_data[train_data["Q"].notnull()]["Q_1 Thème"].values.tolist()
-        theme_code = pd.Series(theme).astype('category').cat.codes
+        # Clean data without NaN df_feedback
+        df_feedback = train_data[["Q", "Q_1 Thème"]][train_data["Q"].notnull()]
+        df_feedback['Q_1_Thème_code'] = df_feedback["Q_1 Thème"].astype('category').cat.codes
 
     else:
-        feedback = train_data["Q"].astype(str)
-        theme = train_data["Q_1 Thème"].astype(str)
-        theme_code = theme.astype('category').cat.codes
+        train_data["Q"] = train_data["Q"].astype(str)
+        train_data["Q_1 Thème"] = train_data["Q_1 Thème"].astype(str)
+        df_feedback = train_data[["Q", "Q_1 Thème"]].copy()
+        df_feedback.loc[:, 'Q_1_Thème_code'] = df_feedback["Q_1 Thème"].astype('category').cat.codes.values
 
     # remove the punctuation '!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~'
-    feedback = [w.translate(str.maketrans('', '', string.punctuation)) for i, w in enumerate(feedback)]
+    feedback_list_nopunctuation = [w.translate(str.maketrans('', '', string.punctuation)) for i, w in enumerate(df_feedback['Q'])]
 
     # tokenize sentences
-    tokens = [word_tokenize(w) for i, w in enumerate(feedback)]
+    feedback_tokens = [word_tokenize(w) for i, w in enumerate(feedback_list_nopunctuation)]
 
     # remove word less than 2 caracters
     feed_clean = []
-    for i in range(0, len(tokens)):
+    for i in range(0, len(feedback_tokens)):
         s = []
-        for word in tokens[i]:
+        for word in feedback_tokens[i]:
             if len(word) > 2:
                 s.append(word)
             # if len(word)>1:
             # s=["".join(word)]
         feed_clean.append(" ".join(s))
 
-    # remove empty  document
-    feed_clean, feed_clean_index = [y for x, y in enumerate(feed_clean) if len(y) > 2], \
-                                   [x for x, y in enumerate(feed_clean) if len(y) > 2]
+    df_feedback.loc[:, 'Q_clean'] = feed_clean
 
-    theme_code_clean = theme_code[feed_clean_index]
+    df_feedback_clean = clear_empty_doc(df_feedback)
 
-    return feed_clean, theme, theme_code_clean
+    return df_feedback_clean
+
+
+

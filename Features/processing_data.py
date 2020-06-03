@@ -1,8 +1,11 @@
 import nltk
+
 nltk.download('wordnet')
 # package allows to tokenize sentence into words
 nltk.download('word_tokenize')
 from nltk.tokenize import word_tokenize
+import pandas as pd
+
 # package to retrieve stopwords
 nltk.download('stopwords')
 from nltk.corpus import stopwords
@@ -16,6 +19,10 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
 # TfidfVectorizer for word embeddings - tf-idf
 from sklearn.feature_extraction.text import TfidfVectorizer
+import fasttext
+from fasttext import util
+import os.path
+from cleaning_data import clear_empty_doc
 
 
 def fr_stop_word():
@@ -42,64 +49,51 @@ class LemmaTokenizer:
 
 
 # word count
-def word_count(data):
+def word_count(df_feedback):
     stopWords = fr_stop_word()
     vectorizer = CountVectorizer(tokenizer=LemmaTokenizer(), analyzer=stemmed_words, max_features=1000,
                                  stop_words=stopWords, strip_accents='ascii')
-    return vectorizer.fit_transform(data).toarray()
+    return vectorizer.fit_transform(df_feedback).toarray()
 
 
 # tfidf
 
-def tfidf(data):
+def tfidf(df_feedback):
     stopWords = fr_stop_word()
     vectorizer = TfidfVectorizer(tokenizer=LemmaTokenizer(), analyzer=stemmed_words, max_features=1000,
                                  stop_words=stopWords, strip_accents='ascii')
-    return vectorizer.fit_transform(data).toarray()
+    return vectorizer.fit_transform(df_feedback).toarray()
 
 
 # fastText
 
+def word2vec_fastText(df_feedback):
+    # Load the model and Retrieve 100 dimensions instead of 300 dimensions
+    if not os.path.exists('../cc.fr.100.bin'):
+        # load the model
+        ft = fasttext.load_model('../cc.fr.300.bin')
+        # Reduce the dimension of the model
+        fasttext.util.reduce_model(ft, 100)
+        # Save the reduced model
+        ft.save_model('../cc.fr.100.bin')
+        # load the model
+        ft = fasttext.load_model('../cc.fr.100.bin')
+        ft.get_dimension()
 
-#Load the model and Retrieve 10 dimensions instead of 300 dimensions
+    else:
+        ft = fasttext.load_model('../cc.fr.100.bin')
+        ft.get_dimension()
 
-#load the model
-ft = fasttext.load_model('cc.fr.300.bin')
+    # Retrieve FastText vocabulary
+    vocab_ft = ft.get_words()
 
-#Reduce the dimension of the model
-fasttext.util.reduce_model(ft, 100)
+    # ft.get_sentence_vector('syndic')
+    # df_feedback_train_clean[1]
 
-#Save the reduced model
-ft.save_model('cc.fr.100.bin')
+    # Mapping between the word in the corpus vs FastText vocab
+    df_feedback_tovec = pd.DataFrame([[ft.get_sentence_vector(word) for word in word_tokenize(x) if word in vocab_ft]
+                                      for x in df_feedback])
 
-#load the model
-ft = fasttext.load_model('./cc.fr.10.bin')
-ft.get_dimension()
+    df_feedback_tovec = clear_empty_doc(df_feedback_tovec).toarray()
 
-#Retrieve FastText vocabulary
-vocab_ft = ft.get_words()
-
-#ft.get_sentence_vector('syndic')
-#feedback_train_clean[1]
-
-#Mapping between the word in the corpus vs FastText vocab
-X_train_ft = [[ft.get_sentence_vector(word) for word in word_tokenize(x) if word in vocab_ft]
-               for x in feedback_train_clean]
-X_test_ft = [[ft.get_sentence_vector(word) for word in word_tokenize(x) if word in vocab_ft]
-               for x in feedback_val_clean]
-
-#Remove empty fasttext train data
-X_train_ft_clean=[]
-theme_train_clean = []
-for i in range(0,len(X_train_ft)):
-    if len(X_train_ft[i])!=0:
-        X_train_ft_clean.append(X_train_ft[i])
-        theme_train_clean.append(theme_train_code_clean[i])
-
-#Remove empty fasttext test data
-X_test_ft_clean=[]
-theme_val_clean = []
-for i in range(0,len(X_test_ft)):
-    if len(X_test_ft[i])!=0:
-        X_test_ft_clean.append(X_test_ft[i])
-        theme_val_clean.append(theme_val_code_clean[i])
+    return df_feedback_tovec
