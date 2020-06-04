@@ -1,9 +1,9 @@
-from processing_data import word_count, tfidf, word2vec_fastText
-from machine_learning_models import train_RF, train_LR
-from calculate_ml_performance_metrics import multiclass_roc_auc_score, conf_matrix
+from process_data_ML import word_count, tfidf
+from ml_models import train_RF, train_LR
+from ml_perf_metrics import multiclass_roc_auc_score, conf_matrix
 
 
-def train_ml(X_train,X_test, Y_train,Y_test,ml_model_name, tfidf_,wordcount_, n_estimators_rf, max_features_rf,
+def train_ml(X_train,X_test, Y_train,Y_test,ml_model_name, tfidf_, wordcount_, n_estimators_rf, max_features_rf,
              random_state, max_iter_LR, output_dir, job_number):
     if tfidf_:
         X_train, X_test = tfidf(X_train), tfidf(X_test)
@@ -30,5 +30,6 @@ def train_ml(X_train,X_test, Y_train,Y_test,ml_model_name, tfidf_,wordcount_, n_
         print(' ******** Training  done ')
         auc = multiclass_roc_auc_score(Y_test, Y_predict, average="macro")
         print('Auc score', auc)
+        conf_matrix(Y_test, Y_predict, output_dir, str(tfidf) + str(ml_model_name) + str(job_number))
 
 

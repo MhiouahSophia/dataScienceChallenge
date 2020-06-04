@@ -7,7 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Features" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model MachineLearning" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Notebooks" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Visualization" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Data_analysis" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model DeepLearning" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.6 (Engie_dataScienceChallenge) (2)" jdkType="Python SDK" />

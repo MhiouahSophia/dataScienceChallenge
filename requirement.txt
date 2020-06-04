@@ -25,5 +25,8 @@ sklearn
 
 fasttext
 
+gensim
+tensorflow
+keras
 
 
