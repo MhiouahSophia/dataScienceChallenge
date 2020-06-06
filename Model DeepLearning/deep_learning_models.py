@@ -54,9 +54,9 @@ def CNN_architecture(X_train_word_seq, X_test_word_seq, Y_train, Y_test, max_seq
 
     Y_predict = model.predict(X_test_word_seq)
 
-    np.save(output_dir + 'Y_predict.npy', Y_predict)
-    np.save(output_dir + 'Y_test.npy', Y_test)
-    model.save(output_dir + 'model' + str(job_number))
+    np.save(str(output_dir) + 'Y_predict.npy', Y_predict)
+    np.save(str(output_dir) + 'Y_test.npy', Y_test)
+    model.save(str(output_dir) + 'model' + str(job_number))
 
     return Y_predict,  Y_test
 

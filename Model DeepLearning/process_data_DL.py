@@ -19,32 +19,20 @@ from nltk.tokenize import word_tokenize
 nltk.download('wordnet')
 from sklearn.preprocessing import LabelBinarizer, LabelEncoder
 import numpy as np
-import pandas as pd
-
-import keras
-from keras import optimizers
-from keras import backend as K
-from keras import regularizers
-from keras.models import Sequential
-from keras.layers import Dense, Activation, Dropout, Flatten
-from keras.layers import Embedding, Conv1D, MaxPooling1D, GlobalMaxPooling1D
-from keras.utils import plot_model
 from keras.preprocessing.text import Tokenizer
-from keras.callbacks import EarlyStopping
 
 from tqdm import tqdm
-from nltk.corpus import stopwords
-from nltk.tokenize import RegexpTokenizer
+
 import os, re, csv, math, codecs
 
 from keras.preprocessing import text, sequence
 from keras import utils
 
 
-def fastText1_process(X_train, X_test, MAX_NB_WORDS = 100000,
+def fastText1_process(X_train, X_test, output_dir,
                   embed_dim=300):
-
-    max_seq_len = max(X_train.apply(lambda x: len(x)))
+    MAX_NB_WORDS = 100000
+    max_seq_len = max(X_train.apply(lambda x: len(x.split(' '))))
     print('max_seq_len', max_seq_len)
 
     print("tokenizing input data...")
@@ -86,33 +74,59 @@ def fastText1_process(X_train, X_test, MAX_NB_WORDS = 100000,
             embedding_matrix[i] = embedding_vector
         else:
             words_not_found.append(word)
+
     print('number of null word embeddings: %d' % np.sum(np.sum(embedding_matrix, axis=1) == 0))
     print("sample words not found: ", np.random.choice(words_not_found, 20))
+    print('number of word not found', len(words_not_found))
 
-    np.save('./Data_processed/X_train_processFastText1.npy', X_train_word_seq)
-    np.save('./Data_processed/X_test_processFastText1.npy', X_test_word_seq)
+    np.save(str(output_dir) + 'X_train_processFastText1.npy', X_train_word_seq)
+    np.save(str(output_dir) + 'X_test_processFastText1.npy', X_test_word_seq)
 
     return X_train_word_seq, X_test_word_seq, max_seq_len, nb_words, embedding_matrix, embed_dim
 
 
-def fastText2_process(X_train, X_test):
+def fastText2_process(X_train, X_test, output_dir):
+    MAX_NB_WORDS = 100000
+    max_seq_len = max(X_train.apply(lambda x: len(x.split(' '))))
+    print('max_seq_len', max_seq_len)
+    embed_dim = 10
     # Load the model and Retrieve 100 dimensions instead of 300 dimensions
-    ft = fasttext.load_model('../../FastText/cc.fr.10.bin')
+    ft = fasttext.load_model('../FastText/cc.fr.10.bin')
     ft.get_dimension()
 
     # Retrieve FastText vocabulary
     vocab_ft = ft.get_words()
 
-    # ft.get_sentence_vector('syndic')
-    # df_feedback_train_clean[1]
+    tokenizer = Tokenizer(num_words=MAX_NB_WORDS, lower=True, char_level=False)
+    print(X_train.head())
+    tokenizer.fit_on_texts(X_train)  # leaky
+    word_seq_train = tokenizer.texts_to_sequences(X_train)
+    word_seq_test = tokenizer.texts_to_sequences(X_test)
+    word_index = tokenizer.word_index
+    print("dictionary size: ", len(word_index))
 
-    # Mapping between the word in the corpus vs FastText vocab
-    X_train_tovec = [[ft.get_sentence_vector(word) for word in word_tokenize(x) if word in vocab_ft]
-                         for x in X_train]
-    X_test_tovec = [[ft.get_sentence_vector(word) for word in word_tokenize(x) if word in vocab_ft]
-                         for x in X_test]
+    nb_words = min(MAX_NB_WORDS, len(word_index) + 1)
+    print("tokenizing input data...")
 
-    return X_train_tovec, X_test_tovec
+    embedding_matrix = np.zeros((nb_words, embed_dim))
+    # create a weight matrix for words in training docs
+    embedding_matrix = np.zeros((nb_words, embed_dim))
+    for word, i in tokenizer.word_index.items():
+        embedding_vector = ft.get_sentence_vector(word)
+        if embedding_vector is not None:
+            embedding_matrix[i] = embedding_vector
+
+    word_corpus = [i for i, j in word_index.items()]
+    words_not_found = [j for i, j in enumerate(word_corpus) if j not in vocab_ft]
+
+    print('number of null word embeddings: %d' % np.sum(np.sum(embedding_matrix, axis=1) == 0))
+    # print("sample words not found: ", np.random.choice(words_not_found, 20))
+    print('number of word not found', len(words_not_found))
+
+    X_train_word_seq = sequence.pad_sequences(word_seq_train, maxlen=max_seq_len)
+    X_test_word_seq = sequence.pad_sequences(word_seq_test, maxlen=max_seq_len)
+
+    return X_train_word_seq, X_test_word_seq,  max_seq_len, nb_words, embedding_matrix, embed_dim
 
 
 def doc2vec_process(X_train, X_test):

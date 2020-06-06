@@ -16,6 +16,8 @@ nltk.download('punkt')
 from nltk.stem import WordNetLemmatizer
 # CountVectorizer for word embeddings - word count
 from sklearn.feature_extraction.text import CountVectorizer
+from spellchecker import SpellChecker
+
 
 
 def fr_stop_word():
@@ -76,7 +78,13 @@ def cleaning_text(path, remove_nan=False):
 
     feedback_list_clean = df_feedback['Q'].apply(clean_text).to_list()
     # tokenize sentences
-    feedback_tokens = [word_tokenize(w) for i, w in enumerate(feedback_list_clean)]
+    spell = SpellChecker(language='fr')
+    feedback_tokens = [word_tokenize(w)for i, w in enumerate(feedback_list_clean)]
+    correct_spelling = []
+    for doc in feedback_tokens:
+        for word in doc:
+            correct_spelling.append(spell.correction(word))
+    feedback_tokens = [correct_spelling]
 
     # remove word less than 2 caracters
     feed_clean = []

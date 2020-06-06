@@ -8,7 +8,7 @@ from process_data_DL import fastText1_process, fastText2_process, doc2vec_proces
 from deep_learning_models import CNN_architecture
 from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 import numpy as np
-
+from train_dl import train_dl
 
 def main():
     # parser config
@@ -43,10 +43,9 @@ def main():
     fastText1 = cp["PROCESSING_DL"].getboolean("fastText1")
     fastText2 = cp["PROCESSING_DL"].getboolean("fastText2")
     dl_model_name = cp["DL"].get("dl_model_name")
-    batch_size = cp["PROCESSING_DL"].getint("batch_size")
-    num_epochs = cp["PROCESSING_DL"].getint("num_epochs")
-    num_filters = cp["PROCESSING_DL"].getint("num_filters")
-    weight_decay = cp["PROCESSING_DL"].getint("weight_decay")
+    batch_size = cp["CNN_PARA"].getint("batch_size")
+    num_epochs = cp["CNN_PARA"].getint("num_epochs")
+    num_filters = cp["CNN_PARA"].getint("num_filters")
 
     print('outputdir ', output_dir)
     with open(str(output_dir) + 'config_jobnumber' + str(job_number) + '.ini', 'w') as configfile:
@@ -54,7 +53,7 @@ def main():
 
     df_feedback_clean = cleaning_text(data_path, remove_nan)
     print(df_feedback_clean.head())
-    X_train, X_test, Y_train, Y_test = split_train_test(df_feedback_clean)
+    X_train, X_test, Y_train, Y_test = split_train_test(df_feedback_clean, output_dir, job_number)
     print(X_train.head())
     print(' ******** Loaded, cleaned and split the data')
 
@@ -63,23 +62,8 @@ def main():
                  random_state, max_iter_LR, output_dir, job_number)
 
     if model == 'DL':
-        if fastText1:
-            X_train_word_seq, X_test_word_seq, max_seq_len, nb_words, embedding_matrix, embed_dim = \
-                fastText1_process(X_train, X_test, MAX_NB_WORDS=100000,
-                                  embed_dim=300)
-
-        if dl_model_name == 'CNN':
-            Y_predict, Y_test = CNN_architecture(X_train_word_seq, X_test_word_seq, Y_train, Y_test,
-                                                 max_seq_len, nb_words, embedding_matrix,
-                    embed_dim, output_dir, job_number, batch_size, num_epochs, num_filters, weight_decay)
-            
-        print(' ******** Training  done ')
-        print(Y_predict.shape)
-        print(Y_test.shape)
-        print(Y_test[0])
-        print(Y_predict[0])
-        auc = roc_auc_score(np.array(Y_test), np.array(Y_predict), average='macro')
-        print('Auc score', auc)
+        train_dl(X_train, X_test, Y_train, Y_test, output_dir, dl_model_name, fastText1, fastText2, job_number,batch_size,
+                     num_epochs, num_filters)
 
 
 if __name__ == "__main__":
