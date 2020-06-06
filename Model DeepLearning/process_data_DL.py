@@ -65,7 +65,10 @@ def fastText1_process(X_train, X_test, output_dir,
     words_not_found = []
     nb_words = min(MAX_NB_WORDS, len(word_index) + 1)
     embedding_matrix = np.zeros((nb_words, embed_dim))
+    dict_spellingimport = np.load('./dict_spelling_corrector.npy', allow_pickle=True).item()
     for word, i in word_index.items():
+        if word in dict_spellingimport.keys():
+            word = dict_spellingimport[word]
         if i >= nb_words:
             continue
         embedding_vector = embeddings_index.get(word)
@@ -89,9 +92,9 @@ def fastText2_process(X_train, X_test, output_dir):
     MAX_NB_WORDS = 100000
     max_seq_len = max(X_train.apply(lambda x: len(x.split(' '))))
     print('max_seq_len', max_seq_len)
-    embed_dim = 10
+    embed_dim = 300
     # Load the model and Retrieve 100 dimensions instead of 300 dimensions
-    ft = fasttext.load_model('../FastText/cc.fr.10.bin')
+    ft = fasttext.load_model('../FastText/cc.fr.300.bin')
     ft.get_dimension()
 
     # Retrieve FastText vocabulary
@@ -116,8 +119,17 @@ def fastText2_process(X_train, X_test, output_dir):
         if embedding_vector is not None:
             embedding_matrix[i] = embedding_vector
 
-    word_corpus = [i for i, j in word_index.items()]
-    words_not_found = [j for i, j in enumerate(word_corpus) if j not in vocab_ft]
+    embedding_matrix = np.zeros((nb_words, embed_dim))
+    words_not_found = []
+    for word, i in word_index.items():
+        if i >= nb_words:
+            continue
+        embedding_vector = ft.get_sentence_vector(word)
+        if (embedding_vector is not None) and len(embedding_vector) > 0:
+            # words not found in embedding index will be all-zeros.
+            embedding_matrix[i] = embedding_vector
+        else:
+            words_not_found.append(word)
 
     print('number of null word embeddings: %d' % np.sum(np.sum(embedding_matrix, axis=1) == 0))
     # print("sample words not found: ", np.random.choice(words_not_found, 20))
