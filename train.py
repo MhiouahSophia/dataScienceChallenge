@@ -4,11 +4,12 @@ from split_data import split_train_test
 from train_ml import train_ml
 import os
 import random
-from process_data_DL import fastText1_process, fastText2_process, doc2vec_process, dow_keras
+from process_data_DL import fastText2_process, doc2vec_process, dow_keras
 from deep_learning_models import CNN_architecture
 from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 import numpy as np
 from train_dl import train_dl
+
 
 def main():
     # parser config

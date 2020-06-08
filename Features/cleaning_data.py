@@ -17,7 +17,7 @@ from nltk.stem import WordNetLemmatizer
 # CountVectorizer for word embeddings - word count
 from sklearn.feature_extraction.text import CountVectorizer
 from spellchecker import SpellChecker
-
+import numpy as np
 
 def fr_stop_word():
     # List of stop word
@@ -80,7 +80,7 @@ def cleaning_text(path, remove_nan=False):
             text: a string
             return: modified initial string
         """
-        text = REPLACE_BY_SPACE_RE.sub(' ', text)  # replace REPLACE_BY_SPACE_RE symbols by space in text
+        text = REPLACE_BY_SPACE_RE.sub('', text)  # replace REPLACE_BY_SPACE_RE symbols by space in text
         text = BAD_SYMBOLS_RE.sub('', text)  # delete symbols which are in BAD_SYMBOLS_RE from text
         text = text.lower()  # lowercase text
         text = ' '.join(word for word in text.split() if word not in STOPWORDS)  # delete stopwors from text
@@ -88,8 +88,10 @@ def cleaning_text(path, remove_nan=False):
 
     feedback_list_clean = df_feedback['Q'].apply(clean_text).to_list()
     # tokenize sentences
-
-    feedback_tokens = [word_tokenize(w)for i, w in enumerate(feedback_list_clean)]
+    # List word from corpus not in fasttext and spelling incorrectly
+    list_wspell = np.load('./Notebooks/dict_spelling_300bin.npy', allow_pickle=True).item()
+    feedback_tokens = [word_tokenize(w) if word_tokenize(w) not in list(list_wspell.keys()) else list_wspell[w] for i, w in
+                       enumerate(feedback_list_clean)]
 
     # remove word less than 2 caracters
     feed_clean = []

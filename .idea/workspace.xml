@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="818ed8f8-f05a-4bec-89a5-b75efdda525f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dict_spelling_corrector.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Features/cleaning_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Features/cleaning_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model DeepLearning/process_data_DL.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model DeepLearning/process_data_DL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model DeepLearning/train_dl.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model DeepLearning/train_dl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591413224945</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="model 300 bin pour fasttext">
+      <created>1591418199012</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1591418199012</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -249,7 +258,8 @@
     <MESSAGE value="refactor, only one config.ini and one train and test" />
     <MESSAGE value="fasttext + CNN model" />
     <MESSAGE value="spell checking" />
-    <option name="LAST_COMMIT_MESSAGE" value="spell checking" />
+    <MESSAGE value="model 300 bin pour fasttext" />
+    <option name="LAST_COMMIT_MESSAGE" value="model 300 bin pour fasttext" />
   </component>
   <component name="WindowStateProjectService">
     <state x="618" y="337" width="821" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591417088026">
@@ -260,30 +270,30 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="875" y="434" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1591293672866" />
-    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2" timestamp="1591413224882">
+    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2" timestamp="1591418198928">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591413224882" />
+    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591418198928" />
     <state x="763" y="275" width="424" height="484" key="FileChooserDialogImpl" timestamp="1591315957410">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="763" y="275" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1591315957410" />
-    <state width="1830" height="384" key="GridCell.Tab.0.bottom" timestamp="1591417921974">
+    <state width="1830" height="384" key="GridCell.Tab.0.bottom" timestamp="1591580127414">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="384" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1591417921974" />
-    <state width="1830" height="384" key="GridCell.Tab.0.center" timestamp="1591417921974">
+    <state width="1830" height="384" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1591580127414" />
+    <state width="1830" height="384" key="GridCell.Tab.0.center" timestamp="1591580127413">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="384" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1591417921974" />
-    <state width="1830" height="384" key="GridCell.Tab.0.left" timestamp="1591417921973">
+    <state width="1830" height="384" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1591580127413" />
+    <state width="1830" height="384" key="GridCell.Tab.0.left" timestamp="1591580127413">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="384" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1591417921973" />
-    <state width="1830" height="384" key="GridCell.Tab.0.right" timestamp="1591417921974">
+    <state width="1830" height="384" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1591580127413" />
+    <state width="1830" height="384" key="GridCell.Tab.0.right" timestamp="1591580127414">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="384" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1591417921974" />
+    <state width="1830" height="384" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1591580127414" />
     <state x="823" y="383" width="555" height="264" key="MultipleFileMergeDialog" timestamp="1591152777471">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -292,9 +302,9 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="410" y="170" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1591061136358" />
-    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1591213020257">
+    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1591418207072">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1591213020257" />
+    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1591418207072" />
   </component>
 </project>

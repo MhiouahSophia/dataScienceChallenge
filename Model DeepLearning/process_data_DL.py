@@ -5,13 +5,6 @@ from gensim.models import Doc2Vec
 from sklearn import utils
 import gensim
 from gensim.models.doc2vec import TaggedDocument
-import re
-from fasttext import util
-import os.path
-# fastText
-
-import itertools
-import os
 import nltk
 # package allows to tokenize sentence into words
 nltk.download('word_tokenize')
@@ -20,72 +13,9 @@ nltk.download('wordnet')
 from sklearn.preprocessing import LabelBinarizer, LabelEncoder
 import numpy as np
 from keras.preprocessing.text import Tokenizer
-
 from tqdm import tqdm
-
-import os, re, csv, math, codecs
-
 from keras.preprocessing import text, sequence
 from keras import utils
-
-
-def fastText1_process(X_train, X_test, output_dir,
-                  embed_dim=300):
-    MAX_NB_WORDS = 100000
-    max_seq_len = max(X_train.apply(lambda x: len(x.split(' '))))
-    print('max_seq_len', max_seq_len)
-
-    print("tokenizing input data...")
-    tokenizer = Tokenizer(num_words=MAX_NB_WORDS, lower=True, char_level=False)
-    print(X_train.head())
-    tokenizer.fit_on_texts(X_train)  # leaky
-    word_seq_train = tokenizer.texts_to_sequences(X_train)
-    word_seq_test = tokenizer.texts_to_sequences(X_test)
-    word_index = tokenizer.word_index
-    print("dictionary size: ", len(word_index))
-
-    # pad sequences
-    X_train_word_seq = sequence.pad_sequences(word_seq_train, maxlen=max_seq_len)
-    X_test_word_seq = sequence.pad_sequences(word_seq_test, maxlen=max_seq_len)
-
-    # load embeddings
-    print('loading word embeddings...')
-    embeddings_index = {}
-    f = codecs.open('../FastText/wiki.simple.vec', encoding='utf-8')
-    for line in tqdm(f):
-        values = line.rstrip().rsplit(' ')
-        word = values[0]
-        coefs = np.asarray(values[1:], dtype='float32')
-        embeddings_index[word] = coefs
-    f.close()
-    print('found %s word vectors' % len(embeddings_index))
-
-    # embedding matrix
-    print('preparing embedding matrix...')
-    words_not_found = []
-    nb_words = min(MAX_NB_WORDS, len(word_index) + 1)
-    embedding_matrix = np.zeros((nb_words, embed_dim))
-    dict_spellingimport = np.load('./dict_spelling_corrector.npy', allow_pickle=True).item()
-    for word, i in word_index.items():
-        if word in dict_spellingimport.keys():
-            word = dict_spellingimport[word]
-        if i >= nb_words:
-            continue
-        embedding_vector = embeddings_index.get(word)
-        if (embedding_vector is not None) and len(embedding_vector) > 0:
-            # words not found in embedding index will be all-zeros.
-            embedding_matrix[i] = embedding_vector
-        else:
-            words_not_found.append(word)
-
-    print('number of null word embeddings: %d' % np.sum(np.sum(embedding_matrix, axis=1) == 0))
-    print("sample words not found: ", np.random.choice(words_not_found, 20))
-    print('number of word not found', len(words_not_found))
-
-    np.save(str(output_dir) + 'X_train_processFastText1.npy', X_train_word_seq)
-    np.save(str(output_dir) + 'X_test_processFastText1.npy', X_test_word_seq)
-
-    return X_train_word_seq, X_test_word_seq, max_seq_len, nb_words, embedding_matrix, embed_dim
 
 
 def fastText2_process(X_train, X_test, output_dir):
