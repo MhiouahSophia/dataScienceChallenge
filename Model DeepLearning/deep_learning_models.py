@@ -19,7 +19,7 @@ from keras import utils
 
 
 ###############################################
-def CNN_architecture(X_train_word_seq, X_test_word_seq, Y_train, Y_test, max_seq_len, nb_words, embedding_matrix,
+def CNN_architecture(X_train_word_seq, X_test_word_seq, Y_train, max_seq_len, nb_words, embedding_matrix,
                     embed_dim, output_dir, job_number, batch_size, num_epochs, num_filters, weight_decay):
 
     num_classes = np.max(Y_train) + 1
@@ -47,7 +47,6 @@ def CNN_architecture(X_train_word_seq, X_test_word_seq, Y_train, Y_test, max_seq
     # to categorical TO DO
 
     Y_train = utils.to_categorical(Y_train, num_classes)
-    Y_test = utils.to_categorical(Y_test, num_classes)
     #model training
     hist = model.fit(X_train_word_seq, Y_train, batch_size=batch_size, epochs=num_epochs, callbacks=callbacks_list,
                      validation_split=0.1, shuffle=True, verbose=2)
@@ -55,10 +54,9 @@ def CNN_architecture(X_train_word_seq, X_test_word_seq, Y_train, Y_test, max_seq
     Y_predict = model.predict(X_test_word_seq)
 
     np.save(str(output_dir) + 'Y_predict.npy', Y_predict)
-    np.save(str(output_dir) + 'Y_test.npy', Y_test)
     model.save(str(output_dir) + 'model' + str(job_number))
 
-    return Y_predict,  Y_test
+    return Y_predict
 
 
 #

@@ -56,6 +56,7 @@ def main():
     print(df_feedback_clean.head())
     X_train, X_test, Y_train, Y_test = split_train_test(df_feedback_clean, output_dir, job_number)
     print(X_train.head())
+    num_classes = np.max(Y_train) + 1
     print(' ******** Loaded, cleaned and split the data')
 
     if model == 'ML':
@@ -63,8 +64,8 @@ def main():
                  random_state, max_iter_LR, output_dir, job_number)
 
     if model == 'DL':
-        train_dl(X_train, X_test, Y_train, Y_test, output_dir, dl_model_name, fastText1, fastText2, job_number,batch_size,
-                     num_epochs, num_filters)
+        train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText1, fastText2, job_number,batch_size,
+                     num_epochs, num_filters, num_classes)
 
 
 if __name__ == "__main__":
