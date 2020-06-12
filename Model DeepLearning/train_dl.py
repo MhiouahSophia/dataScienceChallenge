@@ -21,3 +21,5 @@ def train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText1, fas
 
     print(' ******** Training  done ')
     print(Y_predict.shape)
+
+    return Y_predict

@@ -25,3 +25,6 @@ from sklearn.preprocessing import LabelBinarizer
 # def f1score(Y_test, Y_predict):
 #     f1score = f1_score(Y_test, Y_predict)
 #     return f1score
+
+def auc( Y_test, Y_predict):
+    return roc_auc_score(Y_test, Y_predict)

@@ -9,7 +9,8 @@ from deep_learning_models import CNN_architecture
 from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 import numpy as np
 from train_dl import train_dl
-
+from keras import utils
+from dl_perf_metrics import auc
 
 def main():
     # parser config
@@ -64,8 +65,15 @@ def main():
                  random_state, max_iter_LR, output_dir, job_number)
 
     if model == 'DL':
-        train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText1, fastText2, job_number,batch_size,
+        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText1, fastText2, job_number,batch_size,
                      num_epochs, num_filters, num_classes)
+        Y_test_array = utils.to_categorical(Y_test, num_classes)
+        print(Y_test_array.dtype)
+        print(Y_predict.dtype)
+        print('auc', auc(Y_test_array, Y_predict))
+
+        np.save(str(output_dir) + 'Y_test.npy', Y_test_array)
+        print('Y_test', Y_test_array)
 
 
 if __name__ == "__main__":
