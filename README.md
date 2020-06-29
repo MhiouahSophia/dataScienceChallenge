@@ -20,8 +20,7 @@ $ source yourenv/bin/activate
 $ pip install -r requirement.txt
 
 ```
-4.Change the data_path in the config ini with your own path   
-
+4.Change the data_path in the config ini with your own path    
 5. Launch the code    
  ```
 $ python train-test.py 
