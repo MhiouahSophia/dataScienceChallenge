@@ -63,10 +63,10 @@ def main():
         cp.write(configfile)
 
     if use_test:
-        df_feedback_clean = cleaning_text(data_path, remove_nan, data_test=False)
+        df_feedback_clean = cleaning_text(data_path, data_test=False)
         print(df_feedback_clean.head())
         X_train, Y_train = df_feedback_clean['Q_clean'], df_feedback_clean['Q_1_Thème_code']
-        df_feedback_clean_test = cleaning_text(data_path_test, remove_nan, data_test=True)
+        df_feedback_clean_test = cleaning_text(data_path_test, data_test=True)
         X_test = df_feedback_clean_test['Q_clean']
         num_classes = np.max(Y_train) + 1
         print(' ******** Loaded, cleaned and split the data')
@@ -78,7 +78,6 @@ def main():
             pd.DataFrame(Y_predict).to_csv(str(output_dir) + 'TEST_DATA_Y_predict.csv')
 
     else:
-
         df_feedback_clean = cleaning_text(data_path, remove_nan, data_test=False)
         print(df_feedback_clean.head())
         class_w = class_weight(df_feedback_clean)

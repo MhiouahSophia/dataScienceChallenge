@@ -72,27 +72,16 @@ def correct_spelling(feedback_tokens):
     return feedback_tokens
 
 
-def cleaning_text(path, remove_nan=False, data_test=False):
+def cleaning_text(path, data_test=False):
     data = load_data(path)
     if data_test:
-        if remove_nan:
-            # Clean data without NaN df_feedback
-            df_feedback = data[["Q"]][data["Q"].notnull()]
-
-        else:
-            data['Q'] = data['Q'].fillna({'Q': 'NaN'}).astype(str)
-            df_feedback = data[["Q"]].copy()
+        data['Q'] = data['Q'].fillna({'Q': 'NaN'}).astype(str)
+        df_feedback = data[["Q"]].copy()
     else:
-        if remove_nan:
-            # Clean data without NaN df_feedback
-            df_feedback = data[["Q", "Q_1 Thème"]][data["Q"].notnull()]
-            df_feedback['Q_1_Thème_code'] = df_feedback["Q_1 Thème"].astype('category').cat.codes
-
-        else:
-            data['Q'] = data['Q'].fillna({'Q': 'NaN'}).astype(str)
-            data['Q_1 Thème'] = data['Q_1 Thème'].fillna({'Q_1 Thème': 'NaN'}).astype(str)
-            df_feedback = data[["Q", "Q_1 Thème"]].copy()
-            df_feedback.loc[:, 'Q_1_Thème_code'] = df_feedback["Q_1 Thème"].astype('category').cat.codes.values
+        data['Q'] = data['Q'].fillna({'Q': 'NaN'}).astype(str)
+        data['Q_1 Thème'] = data['Q_1 Thème'].fillna({'Q_1 Thème': 'NaN'}).astype(str)
+        df_feedback = data[["Q", "Q_1 Thème"]].copy()
+        df_feedback.loc[:, 'Q_1_Thème_code'] = df_feedback["Q_1 Thème"].astype('category').cat.codes.values
 
 
     # remove special character, symbols and number
