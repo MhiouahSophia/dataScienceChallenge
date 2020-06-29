@@ -54,6 +54,8 @@ def main():
     num_epochs = cp["CNN_PARA"].getint("num_epochs")
     num_filters = cp["CNN_PARA"].getint("num_filters")
 
+    best_model = cp["TEST"].getboolean("best_model")
+
     print('outputdir ', output_dir)
     with open(str(output_dir) + 'config_jobnumber' + str(job_number) + '.ini', 'w') as configfile:
         cp.write(configfile)
@@ -72,9 +74,8 @@ def main():
                  random_state, max_iter_LR, output_dir, job_number)
 
     if model == 'DL':
-        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText, job_number,
-                             batch_size,
-                             num_epochs, num_filters, num_classes)
+        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText, job_number, batch_size,
+             num_epochs, num_filters, num_classes, best_model)
 
         Y_test = utils.to_categorical(Y_test, num_classes)
         print('auc', roc_auc_score(Y_test, Y_predict))

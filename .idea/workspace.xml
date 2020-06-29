@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="818ed8f8-f05a-4bec-89a5-b75efdda525f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data_analysis/original_analyse.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Model DeepLearning/process_data_DL.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model DeepLearning/process_data_DL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Model DeepLearning/deep_learning_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model DeepLearning/deep_learning_models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Model DeepLearning/train_dl.py" beforeDir="false" afterPath="$PROJECT_DIR$/Model DeepLearning/train_dl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notebooks/dict_spelling_300bin.npy" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_spelling_corrector.npy" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
@@ -299,7 +296,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593394286728</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="all run">
+      <created>1593396032620</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1593396032620</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -324,41 +328,42 @@
     <MESSAGE value="correct bug trind_dl return Y_predict" />
     <MESSAGE value="import code from aws version" />
     <MESSAGE value="requirement and config.ini a jour" />
-    <option name="LAST_COMMIT_MESSAGE" value="requirement and config.ini a jour" />
+    <MESSAGE value="all run" />
+    <option name="LAST_COMMIT_MESSAGE" value="all run" />
   </component>
   <component name="WindowStateProjectService">
     <state x="618" y="337" width="821" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591417088026">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="618" y="337" width="821" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1591417088026" />
-    <state x="875" y="434" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591293672866">
+    <state x="875" y="434" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1593444309067">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="875" y="434" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1591293672866" />
-    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2" timestamp="1593394286688">
+    <state x="875" y="434" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1593444309067" />
+    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2" timestamp="1593396032545">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1593394286688" />
+    <state x="460" y="83" width="912" height="904" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1593396032545" />
     <state x="763" y="275" width="424" height="484" key="FileChooserDialogImpl" timestamp="1591315957410">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="763" y="275" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1591315957410" />
-    <state width="1830" height="326" key="GridCell.Tab.0.bottom" timestamp="1593395798870">
+    <state width="1548" height="326" key="GridCell.Tab.0.bottom" timestamp="1593445153430">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="326" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1593395798870" />
-    <state width="1830" height="326" key="GridCell.Tab.0.center" timestamp="1593395798869">
+    <state width="1548" height="326" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1593445153430" />
+    <state width="1548" height="326" key="GridCell.Tab.0.center" timestamp="1593445153430">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="326" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1593395798869" />
-    <state width="1830" height="326" key="GridCell.Tab.0.left" timestamp="1593395798869">
+    <state width="1548" height="326" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1593445153430" />
+    <state width="1548" height="326" key="GridCell.Tab.0.left" timestamp="1593445153430">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="326" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1593395798869" />
-    <state width="1830" height="326" key="GridCell.Tab.0.right" timestamp="1593395798870">
+    <state width="1548" height="326" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1593445153430" />
+    <state width="1548" height="326" key="GridCell.Tab.0.right" timestamp="1593445153430">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="326" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1593395798870" />
+    <state width="1548" height="326" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1593445153430" />
     <state x="823" y="383" width="555" height="264" key="MultipleFileMergeDialog" timestamp="1591152777471">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -367,10 +372,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="410" y="170" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1591061136358" />
-    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1593394294168">
+    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1593396042484">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1593394294168" />
+    <state x="516" y="271" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1593396042484" />
     <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1593395581948">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

@@ -22,7 +22,6 @@ def CNN_architecture(X_train_word_seq, X_test_word_seq, Y_train, max_seq_len, nb
     model = Sequential()
     model.add(Embedding(nb_words, embed_dim,
                         weights=[embedding_matrix], input_length=max_seq_len, trainable=False))
-    model.add(Bidirectional(GRU(128, return_sequences=True, dropout=0.1, recurrent_dropout=0.1)))
     model.add(Conv1D(num_filters, 7, activation='relu', padding='same'))
     model.add(MaxPooling1D(2))
     model.add(Conv1D(num_filters, 7, activation='relu', padding='same'))
@@ -52,7 +51,7 @@ def CNN_architecture(X_train_word_seq, X_test_word_seq, Y_train, max_seq_len, nb
     Y_predict = model.predict(X_test_word_seq)
     print('Y_predict', Y_predict)
     np.save(str(output_dir) + 'Y_predict.npy', Y_predict)
-    model.save(str(output_dir) + 'model' + str(job_number))
+    model.save(str(output_dir) + 'model' + str(job_number) + '.h5')
 
     return Y_predict
 

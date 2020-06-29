@@ -8,6 +8,7 @@ import numpy as np
 from train_dl import train_dl
 from datetime import datetime
 from pytz import timezone
+from tensorflow import keras
 
 # for the test prediction purpose no evaluation
 
@@ -55,6 +56,9 @@ def main():
     num_epochs = cp["CNN_PARA"].getint("num_epochs")
     num_filters = cp["CNN_PARA"].getint("num_filters")
 
+    best_model = cp["TEST"].getboolean("best_model")
+
+
     print('outputdir ', output_dir)
     with open(str(output_dir) + 'config_jobnumber' + str(job_number) + '.ini', 'w') as configfile:
         cp.write(configfile)
@@ -73,7 +77,8 @@ def main():
 
     if model == 'DL':
         Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText, job_number, batch_size,
-             num_epochs, num_filters, num_classes)
+                             num_epochs, num_filters, num_classes, best_model)
+
         np.save(str(output_dir) + 'TEST_DATA_Y_predict.npy', Y_predict)
         pd.DataFrame(Y_predict).to_csv(str(output_dir) + 'TEST_DATA_Y_predict.csv')
 
