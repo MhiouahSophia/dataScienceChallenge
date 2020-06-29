@@ -1,14 +1,24 @@
+import sys
+
+sys.path.append("/home/ec2-user/environment/Engie_dataScienceChallenge/Features/")
+sys.path.append("/home/ec2-user/environment/Engie_dataScienceChallenge/Model_MachineLearning/")
+sys.path.append("/home/ec2-user/environment/Engie_dataScienceChallenge/Model_DeepLearning/")
 from configparser import ConfigParser
-from cleaning_data import cleaning_text
+from cleaning_data import cleaning_text, cleaning_text_test, class_weight
 from split_data import split_train_test
 from train_ml import train_ml
 import os
+import pandas as pd
 import random
 from process_data_DL import fastText2_process, doc2vec_process, dow_keras
 from deep_learning_models import CNN_architecture
 from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 import numpy as np
 from train_dl import train_dl
+from datetime import datetime
+from pytz import timezone
+# MOMO
+from train_dl import fasttext
 
 
 def main():
@@ -18,7 +28,13 @@ def main():
     cp.read(config_file)
 
     # default config
-    job_number = random.randint(0, 100000000)
+    # datetime object containing current date and time
+
+    tz = timezone('EST')
+    now = datetime.now(tz)
+    job_number = now.strftime("%d-%m-%Y-%H:%M:%S")
+    print('job_number', job_number)
+
     model = cp["DEFAULT"].get("model")
     output_dir = cp["DEFAULT"].get("output_dir") + str(model) + '/' + str(job_number) + '/'
     # create folder for writing the result
@@ -49,6 +65,10 @@ def main():
     num_epochs = cp["CNN_PARA"].getint("num_epochs")
     num_filters = cp["CNN_PARA"].getint("num_filters")
 
+    # MOMO
+    activate = cp["DL"].getboolean("activate")
+    text_mining = cp["PROCESSING_DL"].getboolean("text_mining")
+
     print('outputdir ', output_dir)
     with open(str(output_dir) + 'config_jobnumber' + str(job_number) + '.ini', 'w') as configfile:
         cp.write(configfile)
@@ -56,10 +76,12 @@ def main():
     df_feedback_clean = cleaning_text(data_path, remove_nan)
     print(df_feedback_clean.head())
     X_train, Y_train = df_feedback_clean['Q_clean'], df_feedback_clean['Q_1_Thème_code']
-    df_feedback_clean_test = cleaning_text(data_path, remove_nan)
+    df_feedback_clean_test = cleaning_text_test(data_path_test, remove_nan)
     X_test = df_feedback_clean_test['Q_clean']
     num_classes = np.max(Y_train) + 1
 
+    class_w = class_weight(df_feedback_clean)
+    print(class_w)
     print(X_train.head())
     print(' ******** Loaded, cleaned and split the data')
 
@@ -67,13 +89,18 @@ def main():
         train_ml(X_train, X_test, Y_train, ml_model_name, tfidf_, wordcount_, n_estimators_rf, max_features_rf,
                  random_state, max_iter_LR, output_dir, job_number)
 
-    if model == 'DL':
-        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText1, fastText2, job_number, batch_size,
-                         num_epochs, num_filters, num_classes)
+    if model == 'DL' and activate == True:
+        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText1, fastText2, job_number,
+                             batch_size,
+                             num_epochs, num_filters, num_classes)
+        np.save(str(output_dir) + 'TEST_DATA_Y_predict.npy', Y_predict)
+        pd.DataFrame(Y_predict).to_csv(str(output_dir) + 'TEST_DATA_Y_predict.csv')
 
-    np.save(str(output_dir) + 'TEST_DATA_Y_predict.npy', Y_predict)
-
-    print(Y_predict[0])
+    print(text_mining)
+    if text_mining == True:
+        print('text_mining')
+        df_wnf = fasttext(X_train, X_test, output_dir)
+        pd.DataFrame(df_wnf).to_csv(str(output_dir) + 'word_not_found.csv')
 
 
 if __name__ == "__main__":

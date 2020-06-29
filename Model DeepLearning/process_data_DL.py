@@ -1,16 +1,20 @@
 import fasttext
 from tqdm import tqdm
+
 tqdm.pandas(desc="progress-bar")
 from gensim.models import Doc2Vec
 from sklearn import utils
 import gensim
 from gensim.models.doc2vec import TaggedDocument
 import nltk
+
 # package allows to tokenize sentence into words
 nltk.download('word_tokenize')
 from nltk.tokenize import word_tokenize
+
 nltk.download('wordnet')
 from sklearn.preprocessing import LabelBinarizer, LabelEncoder
+import pandas as pd
 import numpy as np
 from keras.preprocessing.text import Tokenizer
 from tqdm import tqdm
@@ -24,7 +28,7 @@ def fastText2_process(X_train, X_test, output_dir):
     print('max_seq_len', max_seq_len)
     embed_dim = 300
     # Load the model and Retrieve 100 dimensions instead of 300 dimensions
-    ft = fasttext.load_model('../FastText/cc.fr.300.bin')
+    ft = fasttext.load_model('./cc.fr.300.bin')
     ft.get_dimension()
 
     # Retrieve FastText vocabulary
@@ -68,11 +72,10 @@ def fastText2_process(X_train, X_test, output_dir):
     X_train_word_seq = sequence.pad_sequences(word_seq_train, maxlen=max_seq_len)
     X_test_word_seq = sequence.pad_sequences(word_seq_test, maxlen=max_seq_len)
 
-    return X_train_word_seq, X_test_word_seq,  max_seq_len, nb_words, embedding_matrix, embed_dim
+    return X_train_word_seq, X_test_word_seq, max_seq_len, nb_words, embedding_matrix, embed_dim
 
 
 def doc2vec_process(X_train, X_test):
-
     def label_sentences(corpus, label_type):
         """
         Gensim's Doc2Vec implementation requires each document/paragraph to have a label associated with it.

@@ -1,5 +1,6 @@
+from datetime import datetime
 from configparser import ConfigParser
-from cleaning_data import cleaning_text
+from cleaning_data import cleaning_text, class_weight
 from split_data import split_train_test
 from train_ml import train_ml
 import os
@@ -10,7 +11,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 import numpy as np
 from train_dl import train_dl
 from keras import utils
-from dl_perf_metrics import auc
+
 
 def main():
     # parser config
@@ -19,7 +20,13 @@ def main():
     cp.read(config_file)
 
     # default config
-    job_number = random.randint(0, 100000000)
+    # datetime object containing current date and time
+    now = datetime.now()
+    print(now)
+    print(now.strftime("%d/%m/%Y %H:%M:%S"))
+    job_number = now.strftime("%d/%m/%Y %H:%M:%S")
+    print('job_number', job_number)
+
     model = cp["DEFAULT"].get("model")
     output_dir = cp["DEFAULT"].get("output_dir") + str(model) + '/' + str(job_number) + '/'
     # create folder for writing the result
@@ -55,6 +62,8 @@ def main():
 
     df_feedback_clean = cleaning_text(data_path, remove_nan)
     print(df_feedback_clean.head())
+    class_w = class_weight(df_feedback_clean)
+    print(class_w)
     X_train, X_test, Y_train, Y_test = split_train_test(df_feedback_clean, output_dir, job_number)
     print(X_train.head())
     num_classes = np.max(Y_train) + 1
@@ -65,15 +74,15 @@ def main():
                  random_state, max_iter_LR, output_dir, job_number)
 
     if model == 'DL':
-        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText1, fastText2, job_number,batch_size,
-                     num_epochs, num_filters, num_classes)
-        Y_test_array = utils.to_categorical(Y_test, num_classes)
-        print(Y_test_array.dtype)
-        print(Y_predict.dtype)
-        print('auc', auc(Y_test_array, Y_predict))
+        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText1, fastText2, job_number,
+                             batch_size,
+                             num_epochs, num_filters, num_classes, class_w)
 
-        np.save(str(output_dir) + 'Y_test.npy', Y_test_array)
-        print('Y_test', Y_test_array)
+        Y_test = utils.to_categorical(Y_test, num_classes)
+        print('auc', roc_auc_score(Y_test, Y_predict))
+
+        np.save(str(output_dir) + 'Y_test.npy', Y_test)
+        print('Y_test', Y_test)
 
 
 if __name__ == "__main__":
