@@ -1,24 +1,15 @@
-import sys
-
-sys.path.append("/home/ec2-user/environment/Engie_dataScienceChallenge/Features/")
-sys.path.append("/home/ec2-user/environment/Engie_dataScienceChallenge/Model_MachineLearning/")
-sys.path.append("/home/ec2-user/environment/Engie_dataScienceChallenge/Model_DeepLearning/")
 from configparser import ConfigParser
 from cleaning_data import cleaning_text, cleaning_text_test, class_weight
 from split_data import split_train_test
 from train_ml import train_ml
 import os
 import pandas as pd
-import random
-from process_data_DL import fastText2_process, doc2vec_process, dow_keras
-from deep_learning_models import CNN_architecture
-from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 import numpy as np
 from train_dl import train_dl
 from datetime import datetime
 from pytz import timezone
-# MOMO
-from train_dl import fasttext
+
+# for the test prediction purpose no evaluation
 
 
 def main():
@@ -58,16 +49,11 @@ def main():
     max_features_rf = cp["ML_RF"].getint("max_features_rf")
     max_iter_LR = cp["ML_LR"].getint("max_iter_LR")
 
-    fastText1 = cp["PROCESSING_DL"].getboolean("fastText1")
-    fastText2 = cp["PROCESSING_DL"].getboolean("fastText2")
+    fastText = cp["PROCESSING_DL"].getboolean("fastText")
     dl_model_name = cp["DL"].get("dl_model_name")
     batch_size = cp["CNN_PARA"].getint("batch_size")
     num_epochs = cp["CNN_PARA"].getint("num_epochs")
     num_filters = cp["CNN_PARA"].getint("num_filters")
-
-    # MOMO
-    activate = cp["DL"].getboolean("activate")
-    text_mining = cp["PROCESSING_DL"].getboolean("text_mining")
 
     print('outputdir ', output_dir)
     with open(str(output_dir) + 'config_jobnumber' + str(job_number) + '.ini', 'w') as configfile:
@@ -85,22 +71,11 @@ def main():
     print(X_train.head())
     print(' ******** Loaded, cleaned and split the data')
 
-    if model == 'ML':
-        train_ml(X_train, X_test, Y_train, ml_model_name, tfidf_, wordcount_, n_estimators_rf, max_features_rf,
-                 random_state, max_iter_LR, output_dir, job_number)
-
-    if model == 'DL' and activate == True:
-        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText1, fastText2, job_number,
-                             batch_size,
-                             num_epochs, num_filters, num_classes)
+    if model == 'DL':
+        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText, job_number, batch_size,
+             num_epochs, num_filters, num_classes)
         np.save(str(output_dir) + 'TEST_DATA_Y_predict.npy', Y_predict)
         pd.DataFrame(Y_predict).to_csv(str(output_dir) + 'TEST_DATA_Y_predict.csv')
-
-    print(text_mining)
-    if text_mining == True:
-        print('text_mining')
-        df_wnf = fasttext(X_train, X_test, output_dir)
-        pd.DataFrame(df_wnf).to_csv(str(output_dir) + 'word_not_found.csv')
 
 
 if __name__ == "__main__":

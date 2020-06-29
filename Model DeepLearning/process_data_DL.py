@@ -22,13 +22,13 @@ from keras.preprocessing import text, sequence
 from keras import utils
 
 
-def fastText2_process(X_train, X_test, output_dir):
+def fastText_process(X_train, X_test, output_dir):
     MAX_NB_WORDS = 100000
     max_seq_len = max(X_train.apply(lambda x: len(x.split(' '))))
     print('max_seq_len', max_seq_len)
     embed_dim = 300
     # Load the model and Retrieve 100 dimensions instead of 300 dimensions
-    ft = fasttext.load_model('./cc.fr.300.bin')
+    ft = fasttext.load_model('../FastText/cc.fr.300.bin')
     ft.get_dimension()
 
     # Retrieve FastText vocabulary

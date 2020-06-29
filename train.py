@@ -4,13 +4,12 @@ from cleaning_data import cleaning_text, class_weight
 from split_data import split_train_test
 from train_ml import train_ml
 import os
-import random
-from process_data_DL import fastText2_process, doc2vec_process, dow_keras
-from deep_learning_models import CNN_architecture
 from sklearn.metrics import confusion_matrix, accuracy_score, roc_auc_score
 import numpy as np
 from train_dl import train_dl
 from keras import utils
+
+# for experimentation purpose/ evaluation of the model on 20 % of the training data
 
 
 def main():
@@ -24,7 +23,7 @@ def main():
     now = datetime.now()
     print(now)
     print(now.strftime("%d/%m/%Y %H:%M:%S"))
-    job_number = now.strftime("%d/%m/%Y %H:%M:%S")
+    job_number = now.strftime("%d-%m-%Y_%H:%M:%S")
     print('job_number', job_number)
 
     model = cp["DEFAULT"].get("model")
@@ -49,8 +48,7 @@ def main():
     max_features_rf = cp["ML_RF"].getint("max_features_rf")
     max_iter_LR = cp["ML_LR"].getint("max_iter_LR")
 
-    fastText1 = cp["PROCESSING_DL"].getboolean("fastText1")
-    fastText2 = cp["PROCESSING_DL"].getboolean("fastText2")
+    fastText = cp["PROCESSING_DL"].getboolean("fastText")
     dl_model_name = cp["DL"].get("dl_model_name")
     batch_size = cp["CNN_PARA"].getint("batch_size")
     num_epochs = cp["CNN_PARA"].getint("num_epochs")
@@ -74,9 +72,9 @@ def main():
                  random_state, max_iter_LR, output_dir, job_number)
 
     if model == 'DL':
-        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText1, fastText2, job_number,
+        Y_predict = train_dl(X_train, X_test, Y_train, output_dir, dl_model_name, fastText, job_number,
                              batch_size,
-                             num_epochs, num_filters, num_classes, class_w)
+                             num_epochs, num_filters, num_classes)
 
         Y_test = utils.to_categorical(Y_test, num_classes)
         print('auc', roc_auc_score(Y_test, Y_predict))
