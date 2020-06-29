@@ -9,10 +9,10 @@ Ready to run the code
 1. In the folder Engie_result create 2 other folder on named ML and the other DL 
 
 2. In the FastText folder download the word embeding named : cc.fr.300.bin   
-
-'''
+```
 $ ./download_model.py fr
-'''
+
+```
 
  
  
