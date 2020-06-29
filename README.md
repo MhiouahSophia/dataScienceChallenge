@@ -4,9 +4,9 @@ https://datascience-challenge.engie.com/#/challenge/128738
 
 Ready to run the code   
 
-0. Clone the code into a folder, name it as you want. In the same folder create 2 folders named Engie_Result(result of the prediction will be export in ) and FastText (extract the word embedding information)
+0. Clone the code into a folder, name it as you want. In the same folder create 2 folders named Engie_Result (result of the prediction will be exported in ) and FastText (extract the word embedding information)
 
-1. In the folder Engie_result create 2 other folder on named ML and the other DL 
+1. In the folder Engie_result create 2 other folders: named ML and  DL 
 
 2. In the FastText folder download the word embeding named : cc.fr.300.bin   
 ```
