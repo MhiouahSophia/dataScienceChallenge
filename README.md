@@ -14,6 +14,11 @@ $ ./download_model.py fr
 
 ```
 
- 
+3.Create your env, name it as you want and activate it. Install all the librairies required to run the project.
+```
+$ source yourenv/bin/activate
+$ pip install -r requirement.txt
+
+```
  
                         
