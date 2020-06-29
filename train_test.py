@@ -1,6 +1,6 @@
 from datetime import datetime
 from configparser import ConfigParser
-from cleaning_data import cleaning_text, cleaning_text_test, class_weight
+from cleaning_data import cleaning_text, class_weight
 from split_data import split_train_test
 from train_ml import train_ml
 import os
@@ -62,11 +62,11 @@ def main():
     with open(str(output_dir) + 'config_jobnumber' + str(job_number) + '.ini', 'w') as configfile:
         cp.write(configfile)
 
-    if use_test == True:
-        df_feedback_clean = cleaning_text(data_path, remove_nan)
+    if use_test:
+        df_feedback_clean = cleaning_text(data_path, remove_nan, data_test=False)
         print(df_feedback_clean.head())
         X_train, Y_train = df_feedback_clean['Q_clean'], df_feedback_clean['Q_1_Thème_code']
-        df_feedback_clean_test = cleaning_text_test(data_path_test, remove_nan)
+        df_feedback_clean_test = cleaning_text(data_path_test, remove_nan, data_test=True)
         X_test = df_feedback_clean_test['Q_clean']
         num_classes = np.max(Y_train) + 1
         print(' ******** Loaded, cleaned and split the data')
@@ -79,7 +79,7 @@ def main():
 
     else:
 
-        df_feedback_clean = cleaning_text(data_path, remove_nan)
+        df_feedback_clean = cleaning_text(data_path, remove_nan, data_test=False)
         print(df_feedback_clean.head())
         class_w = class_weight(df_feedback_clean)
         print(class_w)
