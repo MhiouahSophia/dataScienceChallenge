@@ -5,4 +5,10 @@
                          __ML
                          __DL
                     __FastText
+                    
+ Telecharger fatstext word vocabulary 
+ ./download_model.py fr 
+ Deposer le fichier dans le Folder Fasttext 
+ 
+ 
                         
