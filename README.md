@@ -1,4 +1,4 @@
-## Engie_dataScienceChallenge
+## dataScienceChallenge
 
 https://datascience-challenge.engie.com/#/challenge/128738
 
